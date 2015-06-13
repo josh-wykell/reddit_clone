@@ -25,7 +25,7 @@
 </ul>
 
 <%= form_for(@link.comments.new, :url => link_comments_path(@link)) do |f| %>
-    
+
     <div class="form-group">
       <%= f.label :body %><br>
       <%= f.text_area :body %>
@@ -37,3 +37,5 @@
 
 <%= link_to 'Edit', edit_link_path(@link) %> |
 <%= link_to 'Back', links_path %>
+
+
