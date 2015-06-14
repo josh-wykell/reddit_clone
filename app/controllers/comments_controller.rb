@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index, :show]
   
   def create
     @link = Link.find(params[:link_id])
