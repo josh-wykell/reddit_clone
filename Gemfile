@@ -14,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'acts_as_votable'
 gem 'kaminari'
 gem 'puma'
+gem 'mandrill-api'
 
 group :development, :test do
   gem 'byebug'
