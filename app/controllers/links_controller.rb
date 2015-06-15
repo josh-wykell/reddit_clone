@@ -4,9 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.page(params[:page])
-    #@links = @links_temp.sort {|b,a| a.get_upvotes.size <=> b.get_upvotes.size}
-    
+    @links = Link.order("cached_votes_up DESC").page(params[:page])
   end
 
   # GET /links/1
