@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
+    @links = Link.paginate(:page => params[:page], :per_page => 3)
     @links_temp = Link.all
     @links = @links_temp.sort {|b,a| a.get_upvotes.size <=> b.get_upvotes.size}
   end
