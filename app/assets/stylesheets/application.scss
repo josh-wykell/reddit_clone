@@ -16,6 +16,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+
+
 #logo {
   font-color: black;
   font-size: 26px;
@@ -43,4 +46,11 @@
   }
 }
 
+.glyphicon-hand-right {
+  margin: 18px 9px 15px 0;
+}
 
+.navbar .stripe-button-el {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

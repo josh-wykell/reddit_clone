@@ -14,6 +14,16 @@
       <nav class="collapse navbar-collapse navbar-ex1-collapse">
         <% if user_signed_in? -%>
             <ul class="nav navbar-nav navbar-right">
+              <li><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></li>
+			  <li>
+				<%= form_tag charges_path do %>
+				  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+				          data-description="A Donation"
+				  		  data-label="Donate"
+				          data-amount="500"></script>
+				<% end %>
+			  </li>
               <li><%= link_to 'Submit link', new_link_path %></li>
               <li><%= link_to 'Account', edit_user_registration_path %></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
@@ -41,3 +51,4 @@
 </div>
 </body>
 </html>
+

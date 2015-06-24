@@ -15,6 +15,7 @@ gem 'acts_as_votable'
 gem 'kaminari'
 gem 'puma'
 gem 'mandrill-api'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug'
