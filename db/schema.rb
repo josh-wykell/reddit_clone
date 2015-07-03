@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615133542) do
+ActiveRecord::Schema.define(version: 20150703164244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,22 @@ ActiveRecord::Schema.define(version: 20150615133542) do
   add_index "links", ["cached_weighted_total"], name: "index_links_on_cached_weighted_total", using: :btree
   add_index "links", ["user_id"], name: "index_links_on_user_id", using: :btree
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "link_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["link_id"], name: "index_taggings_on_link_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -85,4 +101,6 @@ ActiveRecord::Schema.define(version: 20150615133542) do
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "comments", "users"
+  add_foreign_key "taggings", "links"
+  add_foreign_key "taggings", "tags"
 end

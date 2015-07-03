@@ -3,6 +3,7 @@ class LinksController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   
   def index
+    @links = Link.all
     @links = Link.order("cached_votes_up DESC").page(params[:page])
   end
   
@@ -59,6 +60,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:title, :url)
+      params.require(:link).permit(:title, :url, :all_tags)
     end
 end
