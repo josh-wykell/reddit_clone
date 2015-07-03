@@ -5,7 +5,7 @@
         <%= link_to link.title, link %><br>
         <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> ago by <%= link.user.email %></small>
       </h2>
-      <h3 class="all_tags"><%= link_to link.all_tags %></h3>
+      <h4 class="all_tags"><%= link.all_tags %></h4>
     </div>
     <div class="btn-group">
       <a class="btn btn-default btn-sm" href="<%= link.url %>">Visit Link</a>
