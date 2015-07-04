@@ -16,7 +16,7 @@
       <li>
         <p><%= comment.body %></p>
         <%unless comment.user.blank?  %>
-            <p class="author">by <%= comment.user.email %> on <%= comment.created_at.strftime("%B %e")%> at <%=comment.created_at.strftime (" %I %M %P") %></p>
+            <p class="author">by <%= comment.user.user_name %> on <%= comment.created_at.strftime("%B %e")%> at <%=comment.created_at.strftime (" %I %M %P") %></p>
         <%else  %>
             <p class="author">by user on <%= comment.created_at.strftime("%B %e")%> at <%=comment.created_at.strftime (" %I %M %P") %></p>
         <p>
