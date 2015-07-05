@@ -16,6 +16,7 @@ gem 'kaminari'
 gem 'puma'
 gem 'mandrill-api'
 gem 'stripe'
+gem 'activeadmin', github: 'activeadmin'
 
 group :development, :test do
   gem 'byebug'
