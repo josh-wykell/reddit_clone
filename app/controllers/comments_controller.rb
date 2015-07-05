@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:commentable_id, :commentable_type, :body)
   end
 
   # Use callbacks to share common setup or constraints between actions.

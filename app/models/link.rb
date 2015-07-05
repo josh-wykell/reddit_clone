@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
   require 'uri'
+  include Commentable
 
   belongs_to :user
   has_many :comments
