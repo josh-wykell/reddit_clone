@@ -1,27 +1,46 @@
-
-<% @links.each do |link| %>
+<div class="row">
+  <% @links.each do |link| %>
     <div class="link row clearfix">
+<<<<<<< HEAD
+      <div class="col-lg-6">
+        <h2><%= link_to link.title, url_for(link.url) %><br>
+          <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> ago by <%= link.user.user_name %></small>
+        </h2>
+      </div>
+      <div class="col-lg-6">
+        <% image_ex = [".jpg", ".png", ".gif", ".jpeg"] %>
+        <% if image_ex.any? { |ext| link.url.include? ext } %>
+          <%= image_tag link.url, :class => "img-responsive" %>
+          <% else %>
+          <p><%= link_to url_for(link.url) %></p>
+        <% end %>
+      </div>
+        <h4 class="all_tags"><%= link.all_tags %></h4>
+=======
       <h2>
         <%= link_to link.title, url_for(link.url) %><br>
         <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> ago by <%= link.user.user_name %></small>
       </h2>
-      <h4 class="all_tags"><%= link.all_tags %></h4>
+      <h4 class="all_tags"><%= link_to link.all_tags %></h4>
+>>>>>>> c583f54ac7a197959d4601dd079bae60445791cd
     </div>
-    <div class="btn-group">
-      <a class="btn btn-default btn-sm" href="<%= link_path(link.id) %>"><%= pluralize(link.comments.count, "Comment") %></a>
-      <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+        <div class="btn-group">
+          <a class="btn btn-default btn-sm" href="<%= link_path(link.id) %>"><%= pluralize(link.comments.count, "Comment") %></a>
+          <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
           <span class="glyphicon glyphicon-chevron-up"></span>
           Upvote
           <%= link.get_upvotes.size %>
-      <% end %>
-      <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-        <span class="glyphicon glyphicon-chevron-down">
-        Downvote
-          <%= link.get_downvotes.size %>
-      <% end %>
-    </div>
+          <% end %>
 
-<% end %>
-<div class="link row clearfix"
-<%= paginate @links %>
+          <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-chevron-down">
+            Downvote
+            <%= link.get_downvotes.size %>
+          <% end %>
+      </div>
+
+  <% end %>
+  <div class="link row clearfix"
+    <%= paginate @links %>
+  </div>
 </div>
