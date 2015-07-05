@@ -1,9 +1,9 @@
 class Link < ActiveRecord::Base
-  require 'uri'
   include Commentable
+  require 'uri'
+  
 
   belongs_to :user
-  has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
   acts_as_votable

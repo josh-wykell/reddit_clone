@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 	resources :charges
 	
   resources :links do
-    resources :comments
     member do
       put "like", to: "links#upvote"
       put "dislike", to: "links#downvote"
@@ -14,6 +13,9 @@ Rails.application.routes.draw do
     end
 
   end
+
+  resources :comments, :only => [:create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
