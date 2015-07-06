@@ -1,4 +1,4 @@
-<h3>Comments</h3>
+<% unless nested %><h3>Comments</h3><% end %>
 
 <table class="table">
   <tbody>
@@ -14,11 +14,16 @@
           <%= comment.created_at.strftime (" %I %M %P") %>
         </td>
       </tr>
+      <tr>
+        <td colspan="3">
+          <%= render_comments(comment, true) %>
+        </td>
+      </tr>
     <%- end %>
   </tbody>
 </table>
 
-<%= form_for(commentable.comments.new, html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%= form_for(commentable.comments.new, html: { class: "form-horizontal #{'nested' if nested}", role: "form" }) do |f| %>
   <%= f.hidden_field :commentable_type %>
   <%= f.hidden_field :commentable_id %>
 
