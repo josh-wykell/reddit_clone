@@ -1,12 +1,16 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:index, :show]
-  
+
   def index
-    @links = Link.all
+    if params[:tag]
+      @links = Link.tagged_with(params[:tag])
+    else
+      @links = Link.all
+    end
     @links = Link.order("cached_votes_up DESC").page(params[:page])
   end
-  
+
   def show
   end
   
