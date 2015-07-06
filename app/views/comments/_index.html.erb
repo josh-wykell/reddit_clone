@@ -1,63 +1,62 @@
 <% unless nested %><h3>Comments</h3>
 <% end %>
 
-<table class="table">
-  <tbody>
-  <%- commentable.comments.each do |comment| %>
-      <tr>
-        <td>
-          <%= comment.user.user_name %>
-        </td>
-        <td>
-          <%= comment.body %>
-        </td>
-        <td>
-          <%= comment.created_at.strftime (" %I %M %P") %>
-        </td>
-        <td class="votes-container">
-          <%= link_to like_comment_path(comment), method: :put, class: "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-chevron-up"></span>
-              Upvote
-              <%= comment.get_upvotes.size %>
-          <% end %>
-          <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-chevron-down"></span>
-              Downvote
-              <%= comment.get_downvotes.size %>
-          <% end %>
-        </td>
-      </tr>
+
+<div class="row">   
+  <div class="col-lg-12">
+    <%- commentable.comments.each do |comment| %>
+
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#viewdetails_<%= comment.id %>" aria-expanded="false" aria-controls="#viewdetails">View Comment &raquo;</button>
+
+    <div class="collapse" id="viewdetails_<%= comment.id %>">
+      <p><%= comment.user.user_name %></p>
+      <p><%= comment.body %></p>
+      <p><%= comment.created_at.strftime (" %I %M %P") %></p>
+
+      <div class="votes-container">
+        <%= link_to like_comment_path(comment), method: :put, class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+          Upvote
+          <%= comment.get_upvotes.size %>
+        <% end %>
+        <%= link_to dislike_comment_path(comment), method: :put, class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          Downvote
+          <%= comment.get_downvotes.size %>
+        <% end %>
+      </div>
 
       <%= form_for(commentable.comments.new, html: {class: "form-horizontal", role: "form"}) do |f| %>
-          <%= f.hidden_field :commentable_type %>
-          <%= f.hidden_field :commentable_id %>
-          <tr>
-            <td colspan="3">
-              <%= render_comments(comment, true) %>
-            </td>
-          </tr>
+        <%= f.hidden_field :commentable_type %>
+        <%= f.hidden_field :commentable_id %>
+      
+      <div class="row">
+        <p><%= render_comments(comment, true) %></p>
+      </div>
+
       <%- end %>
-  <%- end %>
+      <%- end %>
 
-  </tbody>
-</table>
+      <%= form_for(commentable.comments.new, html: {class: "form-horizontal #{'nested' if nested}", role: "form"}) do |f| %>
+        <%= f.hidden_field :commentable_type %>
+        <%= f.hidden_field :commentable_id %>
 
-<%= form_for(commentable.comments.new, html: {class: "form-horizontal #{'nested' if nested}", role: "form"}) do |f| %>
-    <%= f.hidden_field :commentable_type %>
-    <%= f.hidden_field :commentable_id %>
-
-    <div class="form-group">
-      <%= f.label :body, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_area :body, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :body, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit class: "btn btn-primary" %>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
       </div>
-    </div>
-<% end %>
+      <% end %>
+
+
+  </div>
+</div>
 
 
