@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  get 'tags/:tag', to: 'links#index', as: "tag"
+  get 'tags/:tag', to: 'links#tag', as: "tag"
 	
 	resources :charges
 	

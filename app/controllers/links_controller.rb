@@ -3,15 +3,14 @@ class LinksController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
   def index
-    if params[:tag]
-      @links = Link.tagged_with(params[:tag])
-    else
-      @links = Link.all
-    end
     @links = Link.order("cached_votes_up DESC").page(params[:page])
   end
 
   def show
+  end
+
+  def tag
+    @links = Link.tagged_with(params[:tag])
   end
   
   def new
