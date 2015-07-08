@@ -16,9 +16,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
-
 #logo {
   font-color: black;
   font-size: 26px;
@@ -61,4 +58,16 @@
 
 .votes-container {
   text-align: right;
+}
+
+table.table tr.nested > td {
+  padding: 0 0 0 32px;
+}
+
+.nested table.table {
+  margin: 0;
+
+  td:last-child {
+    border-top: none;
+  }
 }
